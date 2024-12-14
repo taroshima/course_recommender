@@ -6,7 +6,7 @@ import numpy as np
 
 # Load data and embeddings
 # Replace these with your actual data and embeddings
-df = pd.read_csv("courses.csv")  # Replace with your dataset path
+df = pd.read_csv("cleaned_courses.csv")  # Replace with your dataset path
 embeddings = np.load("embeddings.npy")  # Replace with your precomputed embeddings
 
 # Normalize embeddings
