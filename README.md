@@ -39,6 +39,26 @@ course_recommendation_system/
 ├── embeddings.npy                # Generated course embeddings
 ├── recommendation_system.ipynb   # Jupyter Notebook with original implementation
 ```
+## How to Run the Application
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/taroshima/course_recommender
+   cd course_recommendation_system
+   ```
+2. Install the required dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Start the Streamlit application:
+
+   ```bash
+   streamlit run app.py
+   ```
+4. Open the app in your browser (usually at ```http://localhost:8501```).
+
+
 ## Usage Instructions
 
 1. **Upload Dataset** (Optional):
