@@ -1,8 +1,8 @@
 import numpy as np
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from tf.keras.preprocessing.text import Tokenizer
-from tf.keras.preprocessing.sequence import pad_sequences
-from tf.keras import layers, models
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras import layers, models
 
 def make_embeddings(df) :
 
