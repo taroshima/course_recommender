@@ -4,13 +4,26 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.neighbors import NearestNeighbors
 import numpy as np
 
-df = pd.read_csv("cleaned_courses.csv")  
-embeddings = np.load("embeddings.npy")  
+from preproc import load_and_preprocess_data
+from model import make_embeddings
 
-normalized_embeddings = embeddings / np.linalg.norm(embeddings, axis=1, keepdims=True)
+# Cache the preprocessing step to run only once
+@st.cache_data
+def get_cleaned_data(file_path):
+    return load_and_preprocess_data(file_path)
 
+# Cache embedding generation to run only once
+@st.cache_resource
+def get_embeddings(data):
+    return make_embeddings(data)
+
+# Run preprocessing and embedding generation during app setup
+file = get_cleaned_data("Course_info.csv")
+df = pd.read_csv(file)  
+normalized_embeddings = get_embeddings(df)
+
+# Define the recommendation function
 def recommend_courses(course_index, embeddings, data, method="cosine", top_n=5):
-    
     if method == "Cosine Similarity":
         input_embedding = embeddings[course_index]
         similarities = cosine_similarity(input_embedding.reshape(1, -1), embeddings).flatten()
