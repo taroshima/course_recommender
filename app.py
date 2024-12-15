@@ -62,5 +62,5 @@ if selected_course and selected_course != "Select a course":
         st.write(f"Category: {course['category']} | Subcategory: {course['subcategory']}")
         st.write(f"Price: ${round(course['price'], 2)} | Rating: {round(course['avg_rating'], 2)}")
         st.write("---")
-
+else:
     st.write("Please select a course to get recommendations.")
