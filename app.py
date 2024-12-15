@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.neighbors import NearestNeighbors
-import numpy as np
 
 from preproc import load_and_preprocess_data
 from model import make_embeddings
@@ -17,12 +16,12 @@ def get_cleaned_data(file_path):
 def get_embeddings(data):
     return make_embeddings(data)
 
-# Run preprocessing and embedding generation during app setup
+# Runs concurrently during app setup
 file = get_cleaned_data("Course_info.csv")
 df = pd.read_csv(file)  
 normalized_embeddings = get_embeddings(df)
 
-# Define the recommendation function
+# Recommendation function
 def recommend_courses(course_index, embeddings, data, method="cosine", top_n=5):
     if method == "Cosine Similarity":
         input_embedding = embeddings[course_index]
@@ -37,6 +36,8 @@ def recommend_courses(course_index, embeddings, data, method="cosine", top_n=5):
     recommended_courses = data.iloc[similar_indices]
     return recommended_courses
 
+
+
 # UI Starts here
 st.title("Course Recommendation System")
 st.sidebar.header("Select a Course")
@@ -50,7 +51,7 @@ method = st.sidebar.radio("Recommendation Method", ("Cosine Similarity", "K Near
 
 # Show recommendations only when a valid course is selected
 if selected_course and selected_course != "Select a course":
-    course_index = course_titles.index(selected_course) - 1  # Adjust index due to placeholder
+    course_index = course_titles.index(selected_course) - 1  # Adjust index coz of placeholder
     st.write(f"### Recommended courses similar to: **{selected_course}**")
     
     recommended_courses = recommend_courses(course_index, normalized_embeddings, df, method=method)
