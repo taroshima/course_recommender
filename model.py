@@ -17,7 +17,7 @@ def make_embeddings(df) :
 
     # Categorical data encoding
     categorical_columns = ['category', 'subcategory', 'is_paid']
-    encoder = OneHotEncoder(sparse=False, handle_unknown='ignore')
+    encoder = OneHotEncoder(sparse_output=False, handle_unknown='ignore')
     encoded_categorical_data = encoder.fit_transform(df[categorical_columns])
 
     # Extract specific parts of the encoded categorical data for weighted scaling
